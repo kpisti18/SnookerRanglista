@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Okt 19. 18:00
+-- Létrehozás ideje: 2022. Okt 22. 13:03
 -- Kiszolgáló verziója: 10.4.22-MariaDB
 -- PHP verzió: 8.1.2
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Adatbázis: `snooker`
 --
+CREATE DATABASE IF NOT EXISTS `snooker` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `snooker`;
 
 -- --------------------------------------------------------
 
@@ -28,7 +30,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `snooker` (
-  `id` int(10) UNSIGNED NOT NULL,
+  `id` int(11) NOT NULL,
   `Helyezes` int(3) DEFAULT NULL,
   `Nev` varchar(21) DEFAULT NULL,
   `Orszag` varchar(14) DEFAULT NULL,
@@ -149,7 +151,8 @@ INSERT INTO `snooker` (`id`, `Helyezes`, `Nev`, `Orszag`, `Nyeremeny`) VALUES
 -- A tábla indexei `snooker`
 --
 ALTER TABLE `snooker`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `Helyezes` (`Helyezes`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
@@ -159,7 +162,7 @@ ALTER TABLE `snooker`
 -- AUTO_INCREMENT a táblához `snooker`
 --
 ALTER TABLE `snooker`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=101;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
